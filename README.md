@@ -7,45 +7,30 @@
 
 <p align="center"><sub><em>Monty the Clapper — the official mascot of XC Studio</em></sub></p>
 
-<h1 align="center">XC Studio</h1>
+<h1 align="center">🎬 X-Studio</h1>
 
-<p align="center"><strong>The first open-source, agentic video production system.</strong></p>
+<p align="center"><strong>Cloud-Accelerated Local AI Video Production Studio for Any Browser</strong></p>
+
+<div align="center">
+
+### **X-Studio**
+**Dev - [@SILENTXOP](https://github.com/silentxop)** &nbsp;•&nbsp; **YouTuber - [@silentx_nomore](https://youtube.com/@silentx_nomore)**  
+🎥 **YouTube Channel:** [https://youtube.com/@silentx_nomore](https://youtube.com/@silentx_nomore)
+
+[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](X_Studio_Colab.ipynb)
+[![YouTube](https://img.shields.io/badge/YouTube-%40silentx__nomore-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@silentx_nomore)
+[![Developer](https://img.shields.io/badge/Developer-%40SILENTXOP-111111?style=for-the-badge&logo=github&logoColor=white)](https://github.com/silentxop)
+[![License: AGPLv3](https://img.shields.io/badge/license-AGPLv3-blue.svg?style=for-the-badge)](LICENSE)
+
+</div>
 
 <p align="center">
-  <a href="https://github.com/xcode8908/XC-Studio"><img src="https://img.shields.io/badge/Website-XC Studio-d14a28?style=for-the-badge" alt="XC Studio"></a>
-</p>
-
-<p align="center">
-  <a href="#start-from-a-video-you-already-love">Paste A Video</a> &nbsp;·&nbsp;
+  <a href="docs/COLAB_GUIDE.md"><b>Colab & Chrome Guide</b></a> &nbsp;·&nbsp;
+  <a href="X_Studio_Colab.ipynb"><b>Run in Colab</b></a> &nbsp;·&nbsp;
+  <a href="#supported-local-models">Supported Models</a> &nbsp;·&nbsp;
   <a href="#quick-start">Quick Start</a> &nbsp;·&nbsp;
-  <a href="#try-these-prompts">Try These Prompts</a> &nbsp;·&nbsp;
-  <a href="#pipelines">Pipelines</a> &nbsp;·&nbsp;
-  <a href="#how-it-works">How It Works</a> &nbsp;·&nbsp;
-  <a href="#sponsors">Sponsors</a> &nbsp;·&nbsp;
-  <a href="docs/PROVIDERS.md">Providers</a> &nbsp;·&nbsp;
-  <a href="docs/PR_REVIEW_GUIDE.md">Review Guide</a> &nbsp;·&nbsp;
+  <a href="#how-it-works">Architecture</a> &nbsp;·&nbsp;
   <a href="AGENT_GUIDE.md">Agent Guide</a>
-</p>
-
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPLv3-blue.svg" alt="License"></a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/trending">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset=".github/assets/repo-of-the-day-dark.svg">
-      <img alt="🏆 #1 Repository of the Day on GitHub Trending" src=".github/assets/repo-of-the-day-light.svg" height="60">
-    </picture>
-  </a>
-</p>
-
-<p align="center"><strong>Follow The Build</strong></p>
-
-<p align="center">
-  <a href="https://youtube.com/@silentxop"><img src="https://img.shields.io/badge/YouTube-%40XC Studio-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube"></a>
-  <a href="https://github.com/silentxop"><img src="https://img.shields.io/badge/X-%40silentxop-111111?style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
-  <a href="https://github.com/xcode8908/XC-Studio/discussions"><img src="https://img.shields.io/badge/Community-GitHub%20Discussions-0b1220?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Discussions"></a>
 </p>
 
 ## Sponsors
@@ -70,9 +55,61 @@
 
 ---
 
+## 🚀 X-Studio: Google Colab & Chrome Target Architecture
+
+Designed for low-end Windows computers without demanding a local GPU or heavy machine learning packages:
+
+```text
+Windows Low-End PC
+       ↓
+Google Chrome Browser
+       ↓
+X-Studio Web UI (via secure Gradio public tunnel)
+       ↓
+Google Colab Runtime (T4 / L4 / A100 GPU)
+       ↓
+Local AI Video Model (Wan 2.1 / CogVideoX / LTX-Video)
+       ↓
+OpenMontage / X-Studio Processing Pipeline
+       ↓
+Final Rendered MP4
+       ↓
+Direct Browser Download to Local Windows PC (NO GOOGLE DRIVE REQUIRED)
+```
+
+---
+
+## 🧠 Supported Local Video Models in X-Studio
+
+Every model runs **100% locally inside the Google Colab GPU** with zero paid API requirements:
+
+| Model | Variant ID | Min VRAM | Best Fit | Default Resolution | Default FPS |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **CogVideoX (2B)** | `cogvideo-2b` | **6 GB** | Ultra-lightweight & fastest generation | `720x480` | 8 FPS |
+| **Wan 2.1 T2V (1.3B)** | `wan2.1-1.3b` | **8 GB** | Highest visual fidelity on Colab T4 | `832x480` | 16 FPS |
+| **LTX-2 (Local)** | `ltx2-local` | **12 GB** | High-speed real-time synthesis | `768x512` | 30 FPS |
+| **CogVideoX 1.5 (5B)** | `cogvideo-5b` | **12 GB** | Balanced motion dynamics, I2V support | `720x480` | 8 FPS |
+| **Wan 2.2 TI2V (5B)** | `wan2.2-ti2v-5b` | **12 GB** | Cinematic 720p with sequential offload | `1280x704` | 24 FPS |
+
+> **Hardware Auto-Configuration:** X-Studio automatically queries CUDA device properties, detects available VRAM, and recommends the optimal model without hardcoded assumptions.
+
+---
+
+## ⚡ Quick Start: Running X-Studio on Google Colab
+
+1. Open [`X_Studio_Colab.ipynb`](X_Studio_Colab.ipynb) in **Google Colab**.
+2. Select **Runtime ➔ Change runtime type ➔ T4 GPU**.
+3. Run all cells.
+4. Click the generated **`https://*.gradio.live`** link to control X-Studio from **Google Chrome** on your Windows PC.
+5. Generate videos and click **📥 Direct MP4 Download** to save directly to your computer!
+
+*For detailed instructions, troubleshooting, and tips, see the complete [Colab Guide](docs/COLAB_GUIDE.md).*
+
+---
+
 Turn your AI coding assistant into a full video production studio. Describe what you want in plain language — your agent handles research, scripting, asset generation, editing, and final composition.
 
-**Important distinction:** XC Studio can make image-based videos, but it can also make a real **video video** for free/open-source workflows: the agent builds a corpus from free stock footage and open archives, retrieves actual motion clips, edits them into a timeline, and renders a finished piece. That is not the usual "animate a handful of stills and call it video" trick.
+**Important distinction:** X-Studio can make image-based videos, but it can also make a real **video video** for free/open-source workflows: the agent builds a corpus from free stock footage and open archives, retrieves actual motion clips, edits them into a timeline, and renders a finished piece. That is not the usual "animate a handful of stills and call it video" trick.
 
 <div align="center">
   <video src="https://github.com/user-attachments/assets/f77ce7a4-68b8-4f94-a287-e94bf50a32e1" width="100%" controls></video>
@@ -779,8 +816,13 @@ make test
 
 ---
 
-**XC Studio** — Production-grade video with real quality enforcement, orchestrated by your AI assistant.
+<div align="center">
 
-If this project looks useful to you, a ⭐ would really mean a lot — it helps others discover it too.
+### **X-Studio**
+**Dev - [@SILENTXOP](https://github.com/silentxop)**  
+**YouTuber - [@silentx_nomore](https://youtube.com/@silentx_nomore)**  
+🎥 **YouTube Channel:** [https://youtube.com/@silentx_nomore](https://youtube.com/@silentx_nomore)
 
-If you'd like to go further, [sponsor the project](https://github.com/sponsors/silentxop) — XC Studio is built nights and weekends, and your support makes that sustainable.
+*Production-grade AI video generation, powered by OpenMontage Architecture & Google Colab GPU.*
+
+</div>

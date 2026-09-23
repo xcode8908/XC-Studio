@@ -1,5 +1,11 @@
-# XC Studio - GPU Dependencies
-# Install these in addition to requirements.txt when GPU is available
+# X-Studio - GPU Dependencies
+# Install these in addition to requirements.txt when GPU is available (e.g. inside Google Colab)
 torch>=2.0
 torchaudio>=2.0
 torchvision>=0.15
+diffusers>=0.30.0
+transformers>=4.40.0
+accelerate>=0.28.0
+sentencepiece
+gradio>=4.0.0
+imageio-ffmpeg
