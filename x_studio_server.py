@@ -186,9 +186,15 @@ def build_x_studio_app():
             # Left Column: Configuration & Controls
             with gr.Column(scale=5):
                 gr.Markdown("### 1. Scene Description & Model")
+                default_prompt = (
+                    "A cinematic drone shot flying over a majestic medieval castle on a misty green mountain "
+                    "at sunrise, golden sunlight rays, volumetric clouds, photorealistic, 4k movie trailer style"
+                )
+
                 prompt_input = gr.Textbox(
                     label="Prompt",
-                    placeholder="E.g.: A cinematic aerial shot of a futuristic cyberpunk city in rain, neon lights reflections, 4k ultra-realistic...",
+                    value=default_prompt,
+                    placeholder="Enter your scene prompt...",
                     lines=3,
                     max_lines=6,
                 )
@@ -197,8 +203,8 @@ def build_x_studio_app():
                     model_selector = gr.Dropdown(
                         label="Video Model",
                         choices=model_choices,
-                        value=default_model_key,
-                        info="Select local model suitable for available GPU VRAM.",
+                        value="wan2.1-1.3b",
+                        info="Wan 2.1 (1.3B) selected — Best quality for Colab T4 GPU.",
                     )
                     resolution_selector = gr.Dropdown(
                         label="Resolution",
