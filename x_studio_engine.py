@@ -167,14 +167,11 @@ def detect_gpu_hardware() -> dict[str, Any]:
         if total_vram_gb >= (meta["min_vram_gb"] - 0.5):
             available_models.append(model_key)
 
-    # If VRAM is tight, prioritize lightweight models
-    if total_vram_gb >= 14.0:
-        # Colab T4 (15-16GB) or L4 (24GB) or A100 (40GB)
-        recommended_model = "wan2.1-1.3b"
-    elif total_vram_gb >= 8.0:
-        recommended_model = "wan2.1-1.3b" if "wan2.1-1.3b" in available_models else "cogvideo-2b"
-    elif total_vram_gb >= 5.5:
+    # Prioritize lightweight models for free Colab disk safety
+    if "cogvideo-2b" in available_models:
         recommended_model = "cogvideo-2b"
+    elif "wan2.1-1.3b" in available_models:
+        recommended_model = "wan2.1-1.3b"
     else:
         recommended_model = available_models[0] if available_models else None
 

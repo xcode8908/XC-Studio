@@ -130,6 +130,26 @@ notebook = {
             "cell_type": "markdown",
             "metadata": {},
             "source": [
+                "## 🧹 Optional: Free Colab Disk Space (If Disk Warning Appears)\n",
+                "If Google Colab displays a 'Disk is almost full' warning, run this cell to instantly clear cached packages and restore 20-30 GB free space."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "!rm -rf /root/.cache/huggingface /root/.cache/pip /tmp/*\n",
+                "!pip cache purge\n",
+                "!apt-get clean\n",
+                "print('✅ Disk cleanup completed! Free disk space restored.')"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
                 "## 🧪 Optional: Quick Test Generation via Python Script\n",
                 "If you prefer to test video generation directly without launching the UI, run this cell."
             ]
@@ -143,14 +163,14 @@ notebook = {
                 "from x_studio_engine import generate_video\n",
                 "\n",
                 "test_prompt = 'A cinematic drone shot flying over a majestic medieval castle on a misty green mountain at sunrise, golden sunlight rays, volumetric clouds, photorealistic, 4k movie trailer style'\n",
-                "print(f\"🎬 Generating Wan 2.1 video: '{test_prompt}'...\")\n",
+                "print(f\"🎬 Generating CogVideoX (2B) video: '{test_prompt}'...\")\n",
                 "\n",
                 "result = generate_video(\n",
                 "    prompt=test_prompt,\n",
-                "    model_key='wan2.1-1.3b',  # Best quality for Colab T4 GPU\n",
-                "    resolution='832x480',\n",
+                "    model_key='cogvideo-2b',  # Ultra-lightweight & fits comfortably in Colab disk\n",
+                "    resolution='720x480',\n",
                 "    duration_seconds=3.0,\n",
-                "    steps=25,\n",
+                "    steps=20,\n",
                 "    seed=42,\n",
                 ")\n",
                 "\n",

@@ -203,13 +203,13 @@ def build_x_studio_app():
                     model_selector = gr.Dropdown(
                         label="Video Model",
                         choices=model_choices,
-                        value="wan2.1-1.3b",
-                        info="Wan 2.1 (1.3B) selected — Best quality for Colab T4 GPU.",
+                        value="cogvideo-2b",
+                        info="CogVideoX (2B) — Ultra-lightweight (~4.5GB) & generates in ~45 seconds on T4 GPU.",
                     )
                     resolution_selector = gr.Dropdown(
                         label="Resolution",
-                        choices=["832x480", "720x480", "768x512", "1280x704", "480x480"],
-                        value="832x480",
+                        choices=["720x480", "832x480", "768x512", "1280x704", "480x480"],
+                        value="720x480",
                     )
 
                 with gr.Row():
